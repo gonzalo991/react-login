@@ -1,12 +1,13 @@
 import { Router } from "express";
 import Controller from "../controllers/goals.controllers.js";
+import Authentication from '../middlewares/jsonwebtoken.middlewares.js'
 
 const router = Router();
 
-router.get('/', Controller.getGoals);
-router.post('/', Controller.postGoals);
-router.put('/:id', Controller.putGoals);
-router.delete('/:id', Controller.deleteGoals);
+router.get('/', Authentication, Controller.getGoals);
+router.post('/', Authentication, Controller.postGoals);
+router.put('/:id', Authentication, Controller.putGoals);
+router.delete('/:id', Authentication, Controller.deleteGoals);
 
 
 export default router;
