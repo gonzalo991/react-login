@@ -1,13 +1,14 @@
 import express from "express";
 import dotenv from 'dotenv';
 import router from "./routes/goals.routes.js";
+import userRouter from './routes/user.routes.js';
 import colors from 'colors';
 import connectDB from "./databases/mongoose.databases.js";
-dotenv.config({ path: './.env' });
 import errorHandler from './middlewares/error.middlewares.js';
 
 //Config
 const app = express();
+dotenv.config({ path: './.env' });
 const port = process.env.PORT || 3000;
 connectDB();
 
@@ -18,6 +19,7 @@ app.use(errorHandler);
 
 //Routes
 app.use('/api/goals', router);
+app.use('/api/users', userRouter);
 
 
 //PORT listening
